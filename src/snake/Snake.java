@@ -13,10 +13,10 @@ public class Snake {
     Node tail = null;
      
     Apple apples = null;
-    ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();//用来存放�?有位置的坐标
-    //Yard yard = new Yard();QUESTION:StackOutError是�?�么产生的？
+    ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();//用来存放�?有位置的坐标
+    //Yard yard = new Yard();QUESTION:StackOutError是�?�么产生的？
      
-    Snake() {//初始化的蛇是�?个有�?头一尾向左运动的链表
+    Snake() {//初始化的蛇是�?个有�?头一尾向左运动的链表
         Node head = new Node(Yard.ROWS/2, Yard.COLUMNS/2, Dir.L);
         Node tail = new Node(Yard.ROWS/2+1, Yard.COLUMNS/2, Dir.L);
         this.head = head;
@@ -24,8 +24,8 @@ public class Snake {
         head.next = tail;
         tail.last = head;
          
-        apples = new Apple(new Coordinate(10, 10));//蛇自带一个苹�?
-        for(int y = 4; y <= Yard.ROWS - 2; y ++) {//QUESTION：有没有更加快捷的方法把�?有元素添加进去呢�?//将所有坐标都放入�?个数组中
+        apples = new Apple(new Coordinate(10, 10));//蛇自带一个苹�?
+        for(int y = 4; y <= Yard.ROWS - 2; y ++) {//QUESTION：有没有更加快捷的方法把�?有元素添加进去呢�?//将所有坐标都放入�?个数组中
             for(int x = 2; x <= Yard.COLUMNS - 2; x ++) {
                 coordinates.add(new Coordinate(x, y));
             }
@@ -53,7 +53,7 @@ public class Snake {
         tail = next;
     }
      
-    void addToHead() {//QUSTION:这个方向还是有点不太清楚�?
+    void addToHead() {//QUSTION:这个方向还是有点不太清楚�?
         Node last = null;
         switch(head.dir) {
         case L :
@@ -96,12 +96,12 @@ public class Snake {
      
     boolean dead() {//判断是否死亡
         boolean smash = false;
-        for(Node n = head.next; n != tail; n = n.next) {//遍历除tail以外�?有节点的位置，判断是否与head的坐标重�?
+        for(Node n = head.next; n != tail; n = n.next) {//遍历除tail以外所有节点的位置，判断是否与head的坐标重叠?
             if(head.coo.x == n.coo.x && head.coo.y == n.coo.y) {
                 smash = true;
             }
         }
-        if((head.coo.x < 2 || head.coo.x > Yard.COLUMNS - 2 ||//判断头部是否出界或�?�与其他节点坐标重合
+        if((head.coo.x < 2 || head.coo.x > Yard.COLUMNS - 2 ||//判断头部是否出界或�?�与其他节点坐标重合
                 head.coo.y < 4 || head.coo.y > Yard.ROWS - 2 || smash) == true)
             return true;
         else
@@ -109,7 +109,7 @@ public class Snake {
     }
      
     void run() {
-        if(dead() == false)//如果确认死亡，停止移�?
+        if(dead() == false)//如果确认死亡，停止移�?
             move();
     }
      
@@ -153,7 +153,7 @@ public class Snake {
          
         for(Node n=head; n!=null; n=n.next) {
             n.draw(g);
-            if(n == tail)//每次都将tail擦去可以有效地消除蛇的移动痕�?
+            if(n == tail)//每次都将tail擦去可以有效地消除蛇的移动痕�?
                 n.erase(g);
         }
         if(dead() == true) {
@@ -172,7 +172,7 @@ public class Snake {
         int row, col;
         Coordinate coo;
         Dir dir = Dir.D;
-        Node next;//next和last可以将snake构成�?个双向链�?
+        Node next;//next和last可以将snake构成�?个双向链�?
         Node last;
          
         Node(int row, int col, Dir dir) {
